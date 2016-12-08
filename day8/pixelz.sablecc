@@ -1,0 +1,22 @@
+Grammar two_factor_auth;
+
+Lexer
+kwrect = 'rect';
+kwrot = 'rotate';
+kwcol = 'column';
+kwrow = 'row';
+kwby = 'by';
+digit = '0'..'9';
+int = '-'? digit+;
+
+spaces = '\n' | ' ' | '\r' | '\t';
+
+Parser
+Ignored spaces;
+
+prgrm = instr+;
+
+instr =
+{rect:} kwrect int 'x' int |
+{rotrow:} kwrot kwrow 'y' '=' int kwby int |
+{rotcol:} kwrot kwcol 'x' '=' int kwby int;
