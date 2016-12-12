@@ -1,0 +1,24 @@
+Grammar balance;
+
+Lexer
+
+digit = '0' .. '9'; 
+int = digit+;
+kwbot = 'bot';
+kwout = 'output';
+
+space = '\n' | '\r' | '\t' | ' ';
+blank = space+;
+
+Parser
+Ignored blank;
+
+prgm = stmt+;
+
+stmt =
+{assign:} 'value' int 'goes' 'to' kwbot int |
+{instr:} kwbot int 'gives' 'low' 'to' recv int 'and' 'high' 'to' recv int;
+
+recv = 
+{bot:} kwbot |
+{output:} kwout;
