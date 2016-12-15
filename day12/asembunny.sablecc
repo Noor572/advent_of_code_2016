@@ -1,0 +1,28 @@
+Grammar asembunny;
+
+Lexer
+
+tkcpy = 'cpy';
+tkinc = 'inc';
+tkdec = 'dec';
+tkjnz = 'jnz';
+
+reg = 'a' | 'b' | 'c' | 'd';
+
+int = '-'? digit+;
+digit = '0' .. '9';
+
+blank = ' ' | '\n' | '\r' | '\t';
+
+Parser
+Ignored blank;
+
+prgm = stmt+;
+
+stmt =
+{inc:} tkinc reg | 
+{dec:} tkdec reg |
+{jnz_cst:} tkjnz int int |
+{jnz_reg:} tkjnz reg int |
+{cpy_cst:} tkcpy int reg |
+{cpy_reg:} tkcpy reg reg;
